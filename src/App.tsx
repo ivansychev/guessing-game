@@ -1,8 +1,9 @@
-import { CssBaseline, Switch, Typography } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { lightTheme, darkTheme } from "./Theme.styled";
 import { useCallback, useState } from "react";
 import { Header } from "./header/Header";
+import { Body} from "./body/Body";
 
 
 const App = (): JSX.Element => {
@@ -16,6 +17,7 @@ const App = (): JSX.Element => {
         <ThemeProvider theme={currentTheme}>
             <CssBaseline/>
             <Header handleThemeChange={handleChange}/>
+            <Body/>
         </ThemeProvider>
     )
 }
