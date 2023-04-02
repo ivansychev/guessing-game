@@ -1,13 +1,13 @@
-export const light = {
-    name: "light-theme",
-    colors: {
-        text: "red"
-    },
-};
+import { createTheme } from "@mui/material";
 
-export const dark = {
-    name: "dark-theme",
-    colors: {
-        text: "green"
-    },
-};
+export const darkTheme = createTheme({
+    palette: {
+        mode: "dark"
+    }
+});
+
+export const lightTheme = createTheme({
+    palette: {
+        mode: "light"
+    }
+});

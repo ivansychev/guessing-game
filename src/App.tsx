@@ -1,17 +1,21 @@
-import { ThemeProvider } from "styled-components";
-import { StyledGreeting } from "./Hello.styled";
-import { light, dark } from "./Theme.styled";
-import { useState } from "react";
+import { CssBaseline, Switch, Typography } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import { lightTheme, darkTheme } from "./Theme.styled";
+import { useCallback, useState } from "react";
+import { Header } from "./header/Header";
 
 
 const App = (): JSX.Element => {
-    const [currentTheme, setCurrentTheme] = useState(light)
+    const [currentTheme, setCurrentTheme] = useState(lightTheme)
+
+    const handleChange = useCallback(() => {
+        setCurrentTheme(curr => curr === lightTheme ? darkTheme : lightTheme)
+    },[])
 
     return (
         <ThemeProvider theme={currentTheme}>
-            <StyledGreeting>
-                Hello World!
-            </StyledGreeting>
+            <CssBaseline/>
+            <Header handleThemeChange={handleChange}/>
         </ThemeProvider>
     )
 }
