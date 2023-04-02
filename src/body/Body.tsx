@@ -1,4 +1,4 @@
-import { BodyStyled, BodyTextContainerStyled, LeftBodyContainerStyled, TableContainerStyled } from "./Body.styled";
+import { BodyStyled, BodyTextContainerStyled, LeftBodyContainerStyled } from "./Body.styled";
 import {
     Button,
     Grid,
@@ -23,42 +23,48 @@ export const Body = () => (
                     </Button>
                     <BodyTextContainerStyled>
                         <AccountCircle sx={{ marginRight: "10px" }} />
-                        <Typography variant="h6">Current Round</Typography>
+                        <Typography variant="p">Current Round</Typography>
                     </BodyTextContainerStyled>
-                    <TableContainerStyled>
-                        <TableContainer component={Paper}>
-                            <Table size="small" aria-label="simple table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Name</TableCell>
-                                        <TableCell align="right">Point</TableCell>
-                                        <TableCell align="right">Multiplier</TableCell>
+                    <TableContainer component={Paper}>
+                        <Table size="small" aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Name</TableCell>
+                                    <TableCell align="right">Point</TableCell>
+                                    <TableCell align="right">Multiplier</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {["You", "CPU1", "CPU2", "CPU3", "CPU4"].map((name) => (
+                                    <TableRow key={name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                        <TableCell>{name}</TableCell>
+                                        <TableCell align="right">{"-"}</TableCell>
+                                        <TableCell align="right">{"-"}</TableCell>
                                     </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {["You", "CPU1", "CPU2", "CPU3", "CPU4"].map((name) => (
-                                        <TableRow key={name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                            <TableCell>{name}</TableCell>
-                                            <TableCell align="right">{"-"}</TableCell>
-                                            <TableCell align="right">{"-"}</TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </TableContainerStyled>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
                     <BodyTextContainerStyled>
                         <AccountCircle sx={{ marginRight: "10px" }} />
-                        <Typography variant="h6">Speed</Typography>
+                        <Typography variant="p">Speed</Typography>
                     </BodyTextContainerStyled>
                     <Paper sx={{ padding: "10px 20px 0px" }}>
                         <Slider
+                            sx={{
+                                margin: 0,
+                                padding: "0 0 20px",
+                                '& span': {
+                                    top: "5px",
+                                },
+                            }}
+                            size="small"
                             aria-label="Speed"
                             defaultValue={2}
                             step={1}
                             max={5}
                             min={1}
-                            marks={[1,2,3,4,5].map((n) => ({ value: n, label: n }))}
+                            marks={[1,2,3,4,5].map((n) => ({ value: n, label: `${n}x` }))}
                         />
                     </Paper>
                 </LeftBodyContainerStyled>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const BodyStyled = styled.div(() => ({
-    padding: "10px"
+    padding: "20px 0 10px"
 }));
 
 export const LeftBodyContainerStyled = styled.div(() => ({
@@ -12,9 +12,5 @@ export const LeftBodyContainerStyled = styled.div(() => ({
 export const BodyTextContainerStyled = styled.div(() => ({
     display: "flex",
     alignItems: "center",
-    marginTop: "10px"
-}));
-
-export const TableContainerStyled = styled.div(() => ({
-    marginTop: "10px"
+    margin: "10px 0 5px"
 }));
