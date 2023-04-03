@@ -11,7 +11,7 @@ export const HeaderInfo: FC<HeaderInfoProps> = ({
     text,
     Icon
 }) => (
-    <Paper sx={{ height: "100%", display: 'flex', alignItems: 'center', padding: "0px 10px", justifyContent: "space-between" }}>
+    <Paper elevation={3} sx={{ height: "100%", display: 'flex', alignItems: 'center', padding: "0px 10px", justifyContent: "space-between" }}>
         <Typography variant="h6">{text}</Typography>
         <Icon sx={{ margin: "0px 10px" }} />
     </Paper>

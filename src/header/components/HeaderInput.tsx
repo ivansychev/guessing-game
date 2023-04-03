@@ -11,7 +11,7 @@ export const HeaderInput: FC<HeaderInputProps> = ({
     label,
     Icon
 }) => (
-    <Paper>
+    <Paper elevation={3}>
         <FormControl variant="outlined" sx={{ width: "100%" }}>
             <InputLabel htmlFor={label.toLowerCase()}>{label}</InputLabel>
             <OutlinedInput

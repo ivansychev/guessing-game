@@ -9,7 +9,7 @@ export const SpeedModifier: FC = () => (
             <SpeedIcon sx={{ marginRight: "10px" }} />
             <Typography variant="p">Speed</Typography>
         </BodyTextContainerStyled>
-        <Paper sx={{ padding: "10px 20px 0px" }}>
+        <Paper elevation={3} sx={{ padding: "10px 20px 0px" }}>
             <Slider
                 sx={{
                     margin: 0,

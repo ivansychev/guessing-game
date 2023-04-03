@@ -9,7 +9,7 @@ export const Chat: FC = () => (
             <ChatIcon sx={{ marginRight: "10px" }} />
             <Typography variant="p">Chat</Typography>
         </TextContainerStyled>
-        <Paper sx={{ height: "100%" }}>
+        <Paper elevation={3} sx={{ height: "100%" }}>
             <Typography variant="h6">Chat</Typography>
         </Paper>
     </FooterContainerStyled>

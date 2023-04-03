@@ -9,7 +9,7 @@ export const RankingInfo: FC = () => (
             <EqualizerIcon sx={{ marginRight: "10px" }} />
             <Typography variant="p">Ranking</Typography>
         </TextContainerStyled>
-        <TableContainer sx={{ maxHeight: 150 }} component={Paper}>
+        <TableContainer elevation={3} sx={{ maxHeight: 150 }} component={Paper}>
             <Table size="small" aria-label="simple table">
                 <TableHead>
                     <TableRow>

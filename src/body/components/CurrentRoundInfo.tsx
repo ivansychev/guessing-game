@@ -9,7 +9,7 @@ export const CurrentRoundInfo: FC = () => (
             <TimerIcon sx={{ marginRight: "10px" }} />
             <Typography variant="p">Current Round</Typography>
         </BodyTextContainerStyled>
-        <TableContainer component={Paper}>
+        <TableContainer elevation={3} component={Paper}>
             <Table size="small" aria-label="simple table">
                 <TableHead>
                     <TableRow>
