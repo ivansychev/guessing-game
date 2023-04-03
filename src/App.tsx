@@ -9,7 +9,7 @@ import { Footer } from "./footer/Footer";
 
 
 const App = (): JSX.Element => {
-    const [currentTheme, setCurrentTheme] = useState(lightTheme)
+    const [currentTheme, setCurrentTheme] = useState(darkTheme)
 
     const handleChange = useCallback(() => {
         setCurrentTheme(curr => curr === lightTheme ? darkTheme : lightTheme)
