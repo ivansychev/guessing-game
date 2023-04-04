@@ -1,31 +1,55 @@
-import styled from "styled-components";
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 
-export const FooterContainerStyled = styled.div(() => ({
-    display: "flex",
-    flexDirection: "column",
-    height: "100%"
-}));
+const scrollStyle = () => css`
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
 
-export const TextContainerStyled = styled.div(() => ({
-    display: "flex",
-    alignItems: "center",
-    margin: "5px 0"
-}));
+  &::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: #e7e7e7;
+    border: 1px solid #cacaca;
+  }
 
-export const ChatInputStyled =  styled.div(() => ({
-    display: "flex",
-    justifyContent: "space-evenly"
-}));
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #605555;
+  }
+`
 
-export const MessageListContainer = styled.div(() => ({
-    height: "100%",
-}));
+export const FooterContainerStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+  & > {
+    ${scrollStyle}
+  }
+`
 
-export const MessageList = styled.ul(() => ({
-    height: "90px",
-    overflowY: "scroll",
-    fontSize: "0.8rem",
-    listStyle: "none",
-    padding: "10px",
-    margin: 0
-}));
+export const TextContainerStyled = styled.div`
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+`
+
+export const ChatInputStyled =  styled.div`
+    display: flex;
+    justify-content: space-evenly;
+`
+
+export const MessageListContainer = styled.div`
+    height: 100%;
+`
+
+export const MessageList = styled.ul`
+  height: 94px;
+  overflow-y: scroll;
+  font-size: 0.8rem;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+
+  ${scrollStyle}
+`

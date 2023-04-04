@@ -6,12 +6,15 @@ import { AppStyled } from "./App.styled";
 import { Header } from "./header/Header";
 import { Body } from "./body/Body";
 import { Footer } from "./footer/Footer";
-
+import { io } from 'socket.io-client';
+import { AppContext } from "./context";
 
 const App = (): JSX.Element => {
     const [currentTheme, setCurrentTheme] = useState(darkTheme)
-
-    console.log(currentTheme)
+    const [socket] = useState(() => io('http://localhost:4000'))
+    const [userName, setUserName] = useState('')
+    const [points, setPoints] = useState('')
+    const [multiplier, setMultiplier] = useState('')
 
     const handleChange = useCallback(() => {
         setCurrentTheme(curr => curr === lightTheme ? darkTheme : lightTheme)
@@ -20,11 +23,17 @@ const App = (): JSX.Element => {
     return (
         <ThemeProvider theme={currentTheme}>
             <CssBaseline/>
-            <AppStyled>
-                <Header handleThemeChange={handleChange}/>
-                <Body/>
-                <Footer/>
-            </AppStyled>
+            <AppContext.Provider value={{
+                socket,
+                userName,
+                setUserName
+            }}>
+                <AppStyled>
+                    <Header handleThemeChange={handleChange}/>
+                    <Body/>
+                    <Footer/>
+                </AppStyled>
+            </AppContext.Provider>
         </ThemeProvider>
     )
 }
