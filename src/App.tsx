@@ -15,8 +15,9 @@ const App = (): JSX.Element => {
     const [userName, setUserName] = useState('')
     const [points, setPoints] = useState('')
     const [multiplier, setMultiplier] = useState('')
+    const [remainingPoints, setRemainingPoints] = useState(1000)
 
-    const handleChange = useCallback(() => {
+    const handleThemeChange = useCallback(() => {
         setCurrentTheme(curr => curr === lightTheme ? darkTheme : lightTheme)
     },[])
 
@@ -25,12 +26,20 @@ const App = (): JSX.Element => {
             <CssBaseline/>
             <AppContext.Provider value={{
                 socket,
-                userName,
-                setUserName
+                userName
             }}>
                 <AppStyled>
-                    <Header handleThemeChange={handleChange}/>
-                    <Body/>
+                    <Header
+                        userName={userName}
+                        remainingPoints={remainingPoints}
+                        setPoints={setPoints}
+                        setMultiplier={setMultiplier}
+                        handleThemeChange={handleThemeChange}
+                    />
+                    <Body
+                        userName={userName}
+                        setUserName={setUserName}
+                    />
                     <Footer/>
                 </AppStyled>
             </AppContext.Provider>

@@ -1,35 +1,51 @@
 import { Grid } from "@mui/material";
 import { AccountCircle, DarkMode, LightMode, MonetizationOn, TrendingUp, AttachMoney } from '@mui/icons-material';
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, Dispatch, FC } from "react";
 import { HeaderInput } from "./components/HeaderInput";
 import { HeaderInfo } from "./components/HeaderInfo";
 import { HeaderSwitcher } from "./components/HeaderSwitcher";
 
-export const Header: FC<{
+type HeaderProps = {
+    userName: string,
+    remainingPoints: number,
+    setPoints: Dispatch<string>
+    setMultiplier: Dispatch<string>
     handleThemeChange: (event: ChangeEvent<HTMLInputElement>, checked: boolean) => void
-}> = ({ handleThemeChange }) => (
+}
+
+export const Header: FC<HeaderProps> = ({
+    userName,
+    remainingPoints,
+    setPoints,
+    setMultiplier,
+    handleThemeChange
+}) => (
     <Grid container spacing={2}>
         <Grid item xs={3}>
             <HeaderInput
+                max={remainingPoints}
+                setValue={setPoints}
                 label="Points"
                 Icon={AttachMoney}
             />
         </Grid>
         <Grid item xs={2}>
             <HeaderInput
+                max={10}
+                setValue={setMultiplier}
                 label="Multiplier"
                 Icon={TrendingUp}
             />
         </Grid>
         <Grid item xs={2}>
             <HeaderInfo
-                text={"1000"}
+                text={remainingPoints.toString()}
                 Icon={MonetizationOn}
             />
         </Grid>
         <Grid item xs={3}>
             <HeaderInfo
-                text={"UserName"}
+                text={userName}
                 Icon={AccountCircle}
             />
         </Grid>

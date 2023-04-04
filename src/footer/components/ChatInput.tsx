@@ -6,6 +6,7 @@ import { AppContext } from "../../context";
 export const ChatInput: FC= () => {
     const [message, setMessage] = useState('')
     const { socket } = useContext(AppContext)
+    const { userName } = useContext(AppContext)
 
     const handleChange = useCallback((e) => {
         setMessage(e.target.value)
@@ -25,7 +26,7 @@ export const ChatInput: FC= () => {
         if(!!message){
             socket.emit('message', {
                 text: message,
-                id: "PLAYER",
+                id: userName,
                 socketID: socket.id,
             });
             setMessage('')

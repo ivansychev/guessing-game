@@ -1,8 +1,7 @@
-import { createContext, Dispatch } from "react";
+import { createContext } from "react";
 import { Socket } from "socket.io-client";
 
 export const AppContext = createContext<{
-    socket: Socket,
-    userName: string,
-    setUserName: Dispatch<string>
+    socket: Socket
+    userName: string
 }>(null);
