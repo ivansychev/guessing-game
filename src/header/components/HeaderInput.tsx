@@ -4,6 +4,7 @@ import { SvgIconComponent } from "@mui/icons-material";
 import { AppContext } from "../../context";
 
 type HeaderInputProps = {
+    reg: RegExp,
     value: number,
     setValue: Dispatch<string>
     label: string,
@@ -11,6 +12,7 @@ type HeaderInputProps = {
 }
 
 export const HeaderInput: FC<HeaderInputProps> = ({
+    reg,
     max,
     setValue,
     label,
@@ -22,7 +24,7 @@ export const HeaderInput: FC<HeaderInputProps> = ({
     const handleChange = (e) => {
         e.preventDefault();
 
-        if (/^\d*\.?\d{0,2}$/.test(e.target.value)) {
+        if (reg.test(e.target.value)) {
             if(parseInt(e.target.value) > 0 && parseInt(e.target.value) <= max) {
                 setVal(e.target.value)
             }

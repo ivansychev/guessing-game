@@ -36,6 +36,7 @@ export const MultiplierScreen: FC<MultiplierScreenProps> = ({
             setTimeout(increment, 5 - speed);
         } else {
             socket.emit('reqRanks')
+            socket.emit('getPointsLeft')
         }
     }, [speed])
 

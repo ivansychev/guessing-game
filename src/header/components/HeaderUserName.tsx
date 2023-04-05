@@ -2,12 +2,12 @@ import { Paper, Typography } from "@mui/material";
 import { SvgIconComponent } from "@mui/icons-material";
 import { FC } from "react";
 
-type HeaderInfoProps = {
+type HeaderUserNameProps = {
     text: string,
     Icon: SvgIconComponent
 }
 
-export const HeaderInfo: FC<HeaderInfoProps> = ({
+export const HeaderUserName: FC<HeaderUserNameProps> = ({
     text,
     Icon
 }) => (

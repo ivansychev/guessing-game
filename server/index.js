@@ -55,6 +55,10 @@ socketIO.on('connection', (socket) => {
         }
     });
 
+    socket.on("getPointsLeft", () => {
+        socket.emit('resPointsLeft', players[socket.id].pointsLeft)
+    })
+
     socket.on('disconnect', () => {
         console.log('🔥: A user disconnected');
         delete players[socket.id]

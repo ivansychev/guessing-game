@@ -2,8 +2,9 @@ import { Grid } from "@mui/material";
 import { AccountCircle, DarkMode, LightMode, MonetizationOn, TrendingUp, AttachMoney } from '@mui/icons-material';
 import { ChangeEvent, Dispatch, FC } from "react";
 import { HeaderInput } from "./components/HeaderInput";
-import { HeaderInfo } from "./components/HeaderInfo";
+import { HeaderUserName } from "./components/HeaderUserName";
 import { HeaderSwitcher } from "./components/HeaderSwitcher";
+import { HeaderPointsLeft } from "./components/HeaderPointsLeft";
 
 type HeaderProps = {
     userName: string,
@@ -23,6 +24,7 @@ export const Header: FC<HeaderProps> = ({
     <Grid container spacing={2}>
         <Grid item xs={3}>
             <HeaderInput
+                reg={/^[0-9\b]+$/}
                 max={remainingPoints}
                 setValue={setPoints}
                 label="Points"
@@ -31,6 +33,7 @@ export const Header: FC<HeaderProps> = ({
         </Grid>
         <Grid item xs={2}>
             <HeaderInput
+                reg={/^\d*\.?\d{0,2}$/}
                 max={10}
                 setValue={setMultiplier}
                 label="Multiplier"
@@ -38,13 +41,13 @@ export const Header: FC<HeaderProps> = ({
             />
         </Grid>
         <Grid item xs={2}>
-            <HeaderInfo
+            <HeaderPointsLeft
                 text={remainingPoints.toString()}
                 Icon={MonetizationOn}
             />
         </Grid>
         <Grid item xs={3}>
-            <HeaderInfo
+            <HeaderUserName
                 text={userName}
                 Icon={AccountCircle}
             />
