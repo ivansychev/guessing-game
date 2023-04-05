@@ -1,6 +1,7 @@
 import { FormControl, InputAdornment, InputLabel, OutlinedInput, Paper } from "@mui/material";
-import { Dispatch, FC, useState } from "react";
+import {Dispatch, FC, useContext, useState} from "react";
 import { SvgIconComponent } from "@mui/icons-material";
+import {AppContext} from "../../context";
 
 type HeaderInputProps = {
     value: number,
@@ -16,6 +17,7 @@ export const HeaderInput: FC<HeaderInputProps> = ({
     Icon
 }) => {
     const [val, setVal] = useState('')
+    const { userName } = useContext(AppContext)
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -35,7 +37,7 @@ export const HeaderInput: FC<HeaderInputProps> = ({
 
     return(
         <Paper elevation={3}>
-            <FormControl variant="outlined" sx={{ width: "100%" }}>
+            <FormControl disabled={!userName} variant="outlined" sx={{ width: "100%" }}>
                 <InputLabel htmlFor={label.toLowerCase()}>{label}</InputLabel>
                 <OutlinedInput
                     id={label.toLowerCase()}

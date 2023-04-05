@@ -37,6 +37,8 @@ const App = (): JSX.Element => {
                         handleThemeChange={handleThemeChange}
                     />
                     <Body
+                        points={points}
+                        multiplier={multiplier}
                         userName={userName}
                         setUserName={setUserName}
                     />

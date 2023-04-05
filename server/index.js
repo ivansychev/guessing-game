@@ -13,19 +13,46 @@ const socketIO = require('socket.io')(http, {
     }
 });
 
+const players = {}
 const chatMessages = []
+const getPlayersData = () => {
+    const keys = Object.keys(players)
+
+    return keys.map((key) => ({
+        name: players[key].username,
+        bet: players[key].bet,
+        multiplier: players[key].multiplier,
+        pointsLeft: players[key].pointsLeft
+    }))
+}
+
 
 //Add this before the app.get() block
 socketIO.on('connection', (socket) => {
     console.log(`⚡: ${socket.id} user just connected!`);
+
+    socket.on('reqPlayers', () => {
+        socket.emit('getPlayers', getPlayersData())
+    })
+
+    socket.on('userJoinedGame', (data) => {
+        players[data.socketID] = data.payload
+    });
 
     socket.on('message', (data) => {
         chatMessages.push(data)
         socketIO.emit('messageResponse', chatMessages);
     });
 
+    socket.on('submitBet', (data) => {
+        players[socket.id].bet = data.bet
+        players[socket.id].multiplier = data.multiplier
+        socketIO.emit('getPlayers', getPlayersData())
+    });
+
     socket.on('disconnect', () => {
         console.log('🔥: A user disconnected');
+        delete players[socket.id]
     });
 });
 
@@ -45,6 +72,12 @@ const getRandomInt = (min, max) =>
     Math.floor(Math.random() * (max - min + 1) + min)
 
 const createBot = (name) => {
+    players[name] = {
+        username: name,
+        bet: '',
+        multiplier: '',
+        pointsLeft: 0
+    }
 
     const saySomething = () => {
         setTimeout(() => {

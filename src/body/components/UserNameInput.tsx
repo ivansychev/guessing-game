@@ -1,6 +1,7 @@
-import { Dispatch, FC, useCallback, useState } from "react";
+import { Dispatch, FC, useCallback, useContext, useState } from "react";
 import { Button, FormControl, OutlinedInput, Paper, Typography } from "@mui/material";
 import { UserInputContainer } from "../Body.styled";
+import { AppContext } from "../../context";
 
 type UserNameProps = {
     setUserName: Dispatch<string>
@@ -10,6 +11,7 @@ export const UserNameInput: FC<UserNameProps> = ({
     setUserName
 }) => {
     const [val, setVal] = useState('')
+    const { socket } = useContext(AppContext)
 
     const handleChange = useCallback((e) => {
         setVal(e.target.value)
@@ -28,6 +30,15 @@ export const UserNameInput: FC<UserNameProps> = ({
     const submitUserName = () => {
         if(val !== ''){
             setUserName(val)
+            socket.emit('userJoinedGame', {
+                socketID: socket.id,
+                payload: {
+                    username: val,
+                    bet: '',
+                    multiplier: '',
+                    pointsLeft: 1000
+                }
+            });
         }
     }
     
@@ -54,7 +65,7 @@ export const UserNameInput: FC<UserNameProps> = ({
                     variant="contained"
                     onClick={handleClick}
                 >
-                    Submit
+                    Accept
                 </Button>
             </UserInputContainer>
         </Paper>

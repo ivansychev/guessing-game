@@ -5,8 +5,7 @@ import { AppContext } from "../../context";
 
 export const ChatInput: FC= () => {
     const [message, setMessage] = useState('')
-    const { socket } = useContext(AppContext)
-    const { userName } = useContext(AppContext)
+    const { socket, userName } = useContext(AppContext)
 
     const handleChange = useCallback((e) => {
         setMessage(e.target.value)
@@ -23,7 +22,7 @@ export const ChatInput: FC= () => {
     }
 
     const submitMessage = () => {
-        if(!!message){
+        if(!!message && !!userName){
             socket.emit('message', {
                 text: message,
                 id: userName,
@@ -36,6 +35,7 @@ export const ChatInput: FC= () => {
     return (
         <ChatInputStyled>
             <FormControl
+                disabled={!userName}
                 sx={{ width: '100%' }}
             >
                 <OutlinedInput
@@ -46,6 +46,7 @@ export const ChatInput: FC= () => {
                 />
             </FormControl>
             <Button
+                disabled={!userName}
                 variant="contained"
                 onClick={handleClick}
             >
