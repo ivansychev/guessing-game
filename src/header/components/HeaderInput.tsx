@@ -1,7 +1,7 @@
 import { FormControl, InputAdornment, InputLabel, OutlinedInput, Paper } from "@mui/material";
-import {Dispatch, FC, useContext, useState} from "react";
+import { Dispatch, FC, useContext, useState } from "react";
 import { SvgIconComponent } from "@mui/icons-material";
-import {AppContext} from "../../context";
+import { AppContext } from "../../context";
 
 type HeaderInputProps = {
     value: number,
@@ -22,7 +22,7 @@ export const HeaderInput: FC<HeaderInputProps> = ({
     const handleChange = (e) => {
         e.preventDefault();
 
-        if (/^[0-9\b]+$/.test(e.target.value)) {
+        if (/^\d*\.?\d{0,2}$/.test(e.target.value)) {
             if(parseInt(e.target.value) > 0 && parseInt(e.target.value) <= max) {
                 setVal(e.target.value)
             }

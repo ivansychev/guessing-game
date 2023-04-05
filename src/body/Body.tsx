@@ -3,7 +3,7 @@ import { Button, Grid } from "@mui/material";
 import { CurrentRoundInfo } from "./components/CurrentRoundInfo";
 import { SpeedModifier } from "./components/SpeedModifier";
 import { MultiplierScreen } from "./components/MultiplierScreen";
-import {Dispatch, FC, useContext, useState} from "react";
+import { Dispatch, FC, SetStateAction, useContext, useState } from "react";
 import { UserNameInput } from "./components/UserNameInput";
 import { AppContext } from "../context";
 
@@ -12,13 +12,15 @@ type BodyProps = {
     multiplier: string
     userName: string
     setUserName: Dispatch<string>
+    setRemainingPoints: Dispatch<SetStateAction<number>>
 }
 
 export const Body: FC<BodyProps> = ({
     points,
     multiplier,
     userName,
-    setUserName
+    setUserName,
+    setRemainingPoints
 }) => {
     const [speed, setSpeed] = useState(2)
     const [isSubmitted, setIsSubmitted] = useState(false)
@@ -27,13 +29,13 @@ export const Body: FC<BodyProps> = ({
     const handleClick = () => {
         if(!isSubmitted && points && multiplier){
             setIsSubmitted(true)
+            setRemainingPoints(prev => prev - parseInt(points))
             socket.emit("submitBet", {
-                bet: points,
-                multiplier: multiplier
+                bet: points.endsWith('.') ? points.slice(0, -1) : points,
+                multiplier: multiplier.endsWith('.') ? multiplier.slice(0, -1) : multiplier
             })
         }
     }
-    
     return (
         <BodyStyled>
             <Grid container spacing={2}>

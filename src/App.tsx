@@ -41,6 +41,7 @@ const App = (): JSX.Element => {
                         multiplier={multiplier}
                         userName={userName}
                         setUserName={setUserName}
+                        setRemainingPoints={setRemainingPoints}
                     />
                     <Footer/>
                 </AppStyled>

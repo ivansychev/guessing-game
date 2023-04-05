@@ -48,10 +48,24 @@ const getPlayersRanks = (players) => {
     }))
 }
 
+const calcPointsLeft = (players, mainBet) => {
+    const keys = Object.keys(players)
+
+    keys.forEach((key) => {
+        if(players[key].multiplier <= mainBet){
+            players[key].pointsLeft =
+                (players[key].pointsLeft + players[key].bet * players[key].multiplier).toFixed()
+        } else {
+            players[key].pointsLeft = (players[key].pointsLeft - players[key].bet).toFixed()
+        }
+    })
+}
+
 module.exports = {
     getPlayersData,
     getPlayersRanks,
     haveUnsubmittedPlayers,
     createBetForBots,
-    getRandomInt
+    getRandomInt,
+    calcPointsLeft
 }
