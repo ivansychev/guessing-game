@@ -52,6 +52,7 @@ socketIO.on('connection', (socket) => {
             mainBet = utils.getRandomInt(0, 1000) / 100
             socketIO.emit('mainBet', mainBet)
             utils.calcPointsLeft(players, mainBet)
+            utils.unSubmitPlayers(players)
         }
     });
 

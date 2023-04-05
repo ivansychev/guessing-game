@@ -33,7 +33,7 @@ export const Header: FC<HeaderProps> = ({
         </Grid>
         <Grid item xs={2}>
             <HeaderInput
-                reg={/^\d*\.?\d{0,2}$/}
+                reg={/^\d+\.?\d{0,2}$/}
                 max={10}
                 setValue={setMultiplier}
                 label="Multiplier"

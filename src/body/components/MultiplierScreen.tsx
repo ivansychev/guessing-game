@@ -1,13 +1,15 @@
-import { FC, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { Dispatch, FC, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { Paper, Typography } from "@mui/material";
 import { AppContext } from "../../context";
 
 type MultiplierScreenProps = {
-    speed: number
+    speed: number,
+    setIsSubmitted: Dispatch<boolean>
 }
 
 export const MultiplierScreen: FC<MultiplierScreenProps> = ({
-    speed
+    speed, 
+    setIsSubmitted
 }) => {
     const [bet, setBet] = useState(0)
     const inc = useRef(0)
@@ -37,6 +39,7 @@ export const MultiplierScreen: FC<MultiplierScreenProps> = ({
         } else {
             socket.emit('reqRanks')
             socket.emit('getPointsLeft')
+            setIsSubmitted(false)
         }
     }, [speed])
 

@@ -54,9 +54,21 @@ const calcPointsLeft = (players, mainBet) => {
     keys.forEach((key) => {
         if(players[key].multiplier <= mainBet){
             players[key].pointsLeft =
-                (players[key].pointsLeft + players[key].bet * players[key].multiplier).toFixed()
+                parseInt((players[key].pointsLeft + players[key].bet * players[key].multiplier).toFixed())
         } else {
-            players[key].pointsLeft = (players[key].pointsLeft - players[key].bet).toFixed()
+            players[key].pointsLeft =
+                parseInt((players[key].pointsLeft - players[key].bet).toFixed())
+        }
+    })
+}
+
+const unSubmitPlayers = (players) => {
+    const keys = Object.keys(players)
+
+    keys.forEach((key) => {
+        if(players[key].type === 'human'){
+            players[key].bet = ''
+            players[key].multiplier = ''
         }
     })
 }
@@ -67,5 +79,6 @@ module.exports = {
     haveUnsubmittedPlayers,
     createBetForBots,
     getRandomInt,
-    calcPointsLeft
+    calcPointsLeft,
+    unSubmitPlayers
 }

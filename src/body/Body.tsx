@@ -66,6 +66,7 @@ export const Body: FC<BodyProps> = ({
                 <Grid item xs={7}>
                     <MultiplierScreen
                         speed={speed}
+                        setIsSubmitted={setIsSubmitted}
                     />
                 </Grid>
             </Grid>
