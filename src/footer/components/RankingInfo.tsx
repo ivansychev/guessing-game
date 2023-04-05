@@ -10,8 +10,6 @@ export const RankingInfo: FC = () => {
 
     useEffect(() => {
         socket.on('getRanks', (players) => {
-            console.log(players)
-
             setRanks(players.sort((p1, p2) => {
                 return parseInt(p2.pointsLeft) - parseInt(p1.pointsLeft)
             }))

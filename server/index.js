@@ -15,6 +15,7 @@ const socketIO = require('socket.io')(http, {
     }
 });
 
+let mainBet = 0
 const players = {}
 const chatMessages = []
 
@@ -44,8 +45,13 @@ socketIO.on('connection', (socket) => {
     socket.on('submitBet', (data) => {
         players[socket.id].bet = data.bet
         players[socket.id].multiplier = data.multiplier
+
         utils.createBetForBots(players)
         socketIO.emit('getPlayers', utils.getPlayersData(players))
+        if(!utils.haveUnsubmittedPlayers(players)){
+            mainBet = utils.getRandomInt(0, 1000) / 100
+            socketIO.emit('mainBet', mainBet)
+        }
     });
 
     socket.on('disconnect', () => {

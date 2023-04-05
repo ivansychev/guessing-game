@@ -20,6 +20,7 @@ export const Body: FC<BodyProps> = ({
     userName,
     setUserName
 }) => {
+    const [speed, setSpeed] = useState(2)
     const [isSubmitted, setIsSubmitted] = useState(false)
     const { socket } = useContext(AppContext)
     
@@ -52,13 +53,18 @@ export const Body: FC<BodyProps> = ({
                                     }
                                 </Button>
                                 <CurrentRoundInfo />
-                                <SpeedModifier />
+                                <SpeedModifier
+                                    speed={speed}
+                                    setSpeed={setSpeed}
+                                />
                             </LeftBodyContainerStyled>
                             : <UserNameInput setUserName={setUserName} />
                     }
                 </Grid>
                 <Grid item xs={7}>
-                    <MultiplierScreen />
+                    <MultiplierScreen
+                        speed={speed}
+                    />
                 </Grid>
             </Grid>
         </BodyStyled>
