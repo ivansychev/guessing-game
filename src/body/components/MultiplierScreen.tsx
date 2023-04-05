@@ -24,6 +24,7 @@ export const MultiplierScreen: FC<MultiplierScreenProps> = ({
 
     useEffect(() => {
         socket.on("mainBet", (mainBet) => {
+            setBet(0)
             trg.current = mainBet
             increment()
         })
