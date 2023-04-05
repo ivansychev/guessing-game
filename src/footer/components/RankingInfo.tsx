@@ -9,16 +9,18 @@ export const RankingInfo: FC = () => {
     const { socket } = useContext(AppContext)
 
     useEffect(() => {
-        socket.on('getPlayers', (players) => {
+        socket.on('getRanks', (players) => {
+            console.log(players)
+
             setRanks(players.sort((p1, p2) => {
                 return parseInt(p2.pointsLeft) - parseInt(p1.pointsLeft)
             }))
         })
 
-        socket.emit('reqPlayers')
+        socket.emit('reqRanks')
 
         return () => {
-            socket.removeAllListeners("getPlayers")
+            socket.removeAllListeners("getRanks")
         }
     }, [])
 

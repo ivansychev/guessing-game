@@ -39,8 +39,8 @@ export const CurrentRoundInfo: FC = () => {
                         {players.map((player) => (
                             <TableRow key={player.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell>{player.name}</TableCell>
-                                <TableCell align="right">{player.bet || '-'}</TableCell>
-                                <TableCell align="right">{player.multiplier || '-'}</TableCell>
+                                <TableCell align="right">{player.bet ?? '-'}</TableCell>
+                                <TableCell align="right">{player.multiplier ?? '-'}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
