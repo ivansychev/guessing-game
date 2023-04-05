@@ -38,6 +38,7 @@ export const MultiplierScreen: FC<MultiplierScreenProps> = ({
             setBet(prev => prev + 0.01)
             setTimeout(increment, 5 - speed);
         } else {
+            inc.current = 0
             socket.emit('reqRanks')
             socket.emit('getPointsLeft')
             setIsSubmitted(false)

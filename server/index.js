@@ -46,9 +46,9 @@ socketIO.on('connection', (socket) => {
         players[socket.id].bet = data.bet
         players[socket.id].multiplier = data.multiplier
 
-        utils.createBetForBots(players)
-        socketIO.emit('getPlayers', utils.getPlayersData(players))
         if(!utils.haveUnsubmittedPlayers(players)){
+            utils.createBetForBots(players)
+            socketIO.emit('getPlayers', utils.getPlayersData(players))
             mainBet = utils.getRandomInt(0, 1000) / 100
             socketIO.emit('mainBet', mainBet)
             utils.calcPointsLeft(players, mainBet)
